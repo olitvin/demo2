@@ -14,6 +14,18 @@ var staticRenderFns = []
 
 // CONCATENATED MODULE: ./src/components/player/BmsPlayer.vue?vue&type=template&id=c68dcd14&scoped=true&
 
+// EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/classCallCheck.js
+var classCallCheck = __webpack_require__("d4ec");
+
+// EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/createClass.js
+var createClass = __webpack_require__("bee2");
+
+// EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/inherits.js + 1 modules
+var inherits = __webpack_require__("262e");
+
+// EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/createSuper.js + 5 modules
+var createSuper = __webpack_require__("2caf");
+
 // EXTERNAL MODULE: ./node_modules/tslib/tslib.es6.js
 var tslib_es6 = __webpack_require__("9ab4");
 
@@ -36,49 +48,68 @@ var styles = __webpack_require__("e087");
 
 
 
+
+
+
+
  // require styles
 
 
 
 videojs_hls_boomstream_es["a" /* init */](video_es["a" /* default */]);
-let BmsPlayervue_type_script_lang_ts_BmsPlayer = class BmsPlayer extends vue_property_decorator["d" /* Vue */] {
-  constructor() {
-    super();
+
+var BmsPlayervue_type_script_lang_ts_BmsPlayer = /*#__PURE__*/function (_Vue) {
+  Object(inherits["a" /* default */])(BmsPlayer, _Vue);
+
+  var _super = Object(createSuper["a" /* default */])(BmsPlayer);
+
+  function BmsPlayer() {
+    Object(classCallCheck["a" /* default */])(this, BmsPlayer);
+
+    return _super.call(this);
   }
 
-  created() {
-    styles["a" /* ExtractShadowStyles */].Extract(this);
-  }
-
-  mounted() {
-    this.player = Object(video_es["a" /* default */])(this.$refs.player, {
-      preload: 'none',
-      controlBar: {
-        volumePanel: {
-          inline: false
+  Object(createClass["a" /* default */])(BmsPlayer, [{
+    key: "created",
+    value: function created() {
+      styles["a" /* ExtractShadowStyles */].Extract(this);
+    }
+  }, {
+    key: "mounted",
+    value: function mounted() {
+      this.player = Object(video_es["a" /* default */])(this.$refs.player, {
+        preload: 'none',
+        controlBar: {
+          volumePanel: {
+            inline: false
+          }
         }
+      });
+      this.player.boomstreamHls({
+        disableSkin: true
+      });
+
+      if (this.poster) {
+        this.player.poster(this.poster);
       }
-    });
-    this.player.boomstreamHls({
-      disableSkin: true
-    });
 
-    if (this.poster) {
-      this.player.poster(this.poster);
+      this.processConfig();
     }
-
-    this.processConfig();
-  }
-
-  processConfig() {
-    if (this.config) {
-      this.player.setSourceConfig(this.config);
-    } else if (this.code) {
-      this.player.src(this.code);
+  }, {
+    key: "processConfig",
+    value: function processConfig() {
+      if (this.config) {
+        this.player.setSourceConfig(this.config).catch(function (e) {
+          return console.log(e);
+        });
+      } else if (this.code) {
+        this.player.src(this.code);
+      }
     }
-  }
+  }]);
 
-};
+  return BmsPlayer;
+}(vue_property_decorator["d" /* Vue */]);
 
 Object(tslib_es6["a" /* __decorate */])([Object(vue_property_decorator["b" /* Prop */])()], BmsPlayervue_type_script_lang_ts_BmsPlayer.prototype, "code", void 0);
 
